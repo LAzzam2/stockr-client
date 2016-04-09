@@ -1,0 +1,23 @@
+//- .list.add-new-list-item-field
+//- 	.add-new-list-item
+//- 		.list-item-text
+//- 			input.list-item-input( type='text', ng-keypress='addNewKeyPress( newItem, $event )', ng-model='newItem', placeholder='$Ticker' )
+//- 		.enter-icon( ng-click='addNewListItem( newItem )' )
+//- 			| Enter
+ul.list
+	.spinner-wrapper( ng-show='loading' )
+		spinner
+	.empty-list( ng-show='list.length === 0' )
+		.empty-list-text
+			| No tickers yet! Why don't you add some?
+	li.list-item( ng-repeat='item in list | reverse', ng-keypress='keyPress( item, $index, $event )' )
+		.list-item-text
+			span
+				input.list-item-input( type='text', ng-model='item.name', placeholder='(x) Delete list item', ng-blur='saveList( item, $index, $event )' )
+			ul.levels
+				li.list-item( ng-repeat='val in item.levels', ng-keypress='' )
+					input.list-item-input( type='text', ng-model='val', placeholder='No levels, Add one', ng-blur='saveList( item, $index, $event )' )
+				.empty-list( ng-show='list.length === 0' )
+					.empty-list-text
+						| No list items yet! Why don't you make some?
+		.delete-list-item( ng-click='deleteListItem( item, $index )' )

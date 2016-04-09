@@ -1,0 +1,119 @@
+// Global styles.
+
+$background: #cccccc ;
+
+::selection
+{
+	background-color: #cdfb9a;
+}
+
+::placeholder
+{
+	color: #aea9a9;
+}
+
+body,
+html
+{
+	// min-height: 100%;
+	overflow: hidden;
+	height: 100%;
+	min-height: 100%;
+	background-color: $background;
+
+	color: $dark;
+	font-family: $muli;
+}
+
+hr
+{
+	margin: 0;
+	border: 0;
+}
+
+h1
+{
+	margin-bottom: 38px;
+
+	font-size: 38px;
+	line-height: 48px;
+}
+
+h2
+{
+	font-size: 30px;
+}
+
+h3
+{
+	color: $green;
+	font-size: 22px;
+	line-height: 33px;
+}
+
+p
+{
+	flex-flow: row;
+	flex-wrap: wrap;
+
+	margin-bottom: 24px;
+
+	font-size: 16px;
+	line-height: 28px;
+
+	&:last-child
+	{
+		margin-bottom: 0;
+	}
+}
+
+pre
+{
+	display: inline-block;
+	padding: 10px 15px 10px 15px;
+	background-color: #f5f0ed;
+
+	font-size: 14px;
+	font-family: Consolas, Courier;
+	line-height: 18px;
+}
+
+span
+{
+	display: inline-block;
+}
+
+a
+{
+	color: #4e88d4;
+
+	&:hover
+	{
+		color: #58beed;
+	}
+
+	&:active
+	{
+		color: #4578ba;
+	}
+
+	&:visited
+	{
+		color: #4e88d4;
+	}
+}
+
+input
+{
+	box-sizing: border-box;
+}
+
+input[ type='submit' ]
+{
+	border: 0;
+
+	&:focus
+	{
+		outline: 0;
+	}
+}

@@ -1,0 +1,210 @@
+.list
+{
+	flex-grow: 1;
+
+	overflow: hidden;
+	min-height: 60px;
+
+	transition: all 0.2s ease-out;
+}
+
+.add-new-list-item
+{
+	height: 60px;
+}
+
+.add-new-list-item,
+.list > li
+{
+	border: 1px solid #edede8;
+	border-radius: 6px;
+	background-color: #fcfcfa;
+}
+
+.list > li
+{
+	margin-bottom: 5px;
+	box-shadow: 0px 0px 3px rgba( 0, 0, 0, 0.05 );
+
+	list-style-type: disc;
+
+	span
+	{
+		flex-flow: row;
+
+		display: flex;
+
+		color: #7b7b7b;
+
+		input
+		{
+			color: #7b7b7b;
+		}
+	}
+}
+
+
+.list-item,
+.add-new-list-item
+{
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+
+	overflow: hidden;
+	cursor: pointer;
+	padding: 10px 0 10px 20px;
+	// background-color: #fcfcfa;
+
+	&.ng-enter
+	{
+		opacity: 0;
+
+		transition: all 0.35s ease-out;
+	}
+
+	&.ng-leave
+	{
+		opacity: 1;
+		height: auto;
+
+		transition: all 0.35s ease-out;
+	}
+
+	&.ng-enter.ng-enter-active
+	{
+		opacity: 1;
+		height: auto;
+
+		transition: all 0.35s ease-out;
+	}
+
+	&.ng-leave.ng-leave-active
+	{
+		opacity: 0;
+
+		transition: all 0.35s ease-out;
+	}
+}
+.list-item:last-of-type
+{
+	padding: 10px 0 7px 20px;
+}
+
+.list-item-text
+{
+	flex-grow: 1;
+
+	height: 100%;
+}
+
+.list-item-text input
+{
+	height: 100%;
+	outline: 0;
+	border: 0;
+	background-color: transparent;
+
+	font-size: 14px;
+	font-family: 'Muli';
+	text-transform: uppercase;
+}
+::-webkit-input-placeholder
+{
+	text-transform: initial;
+}
+
+:-moz-placeholder
+{
+	text-transform: initial;
+}
+
+::-moz-placeholder
+{
+	text-transform: initial;
+}
+
+:-ms-input-placeholder
+{
+	text-transform: initial;
+}
+
+.delete-list-item
+{
+	@extend %icon-x-solid;
+
+	align-items: center;
+	justify-content: center;
+
+	width: 60px;
+	height: 100%;
+
+	color: #e4e4e4;
+	font-size: 15px;
+
+	transition: color 0.2s ease-out;
+
+	&:hover
+	{
+		color: $red;
+	}
+}
+
+.spinner-wrapper
+{
+	justify-content: center;
+
+	opacity: 1;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	border-radius: 6px;
+	background-color: rgba( 255, 255, 255, 0.8 );
+
+	transition: all 0.3s ease-in;
+
+	&.ng-hide
+	{
+		opacity: 0;
+	}
+}
+
+.enter-icon
+{
+	align-items: center;
+	justify-content: center;
+
+	width: 80px;
+	height: 60px;
+	border-radius: 0 6px 6px 0;
+	background-color: $green;
+	box-shadow: -1px 0 7px 0 rgba( 0, 0, 0, 0.2 );
+
+	color: $background;
+	font-size: 12px;
+	text-transform: uppercase;
+
+	transition: all 0.2s ease-in;
+
+	&:hover
+	{
+		background-color: #78b066;
+		box-shadow: -2px 0 9px 0 rgba( 0, 0, 0, 0.24 );
+	}
+
+	&:active
+	{
+		background-color: $green;
+		box-shadow: -2px 0 9px 0 rgba( 0, 0, 0, 0.2 );
+
+		transition: all 0.1s ease;
+	}
+}
+
+.add-new-list-item-field
+{
+	margin-bottom: 20px;
+}

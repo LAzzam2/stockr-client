@@ -1,0 +1,25 @@
+.spinner-wrapper( ng-show='loading' )
+		spinner
+.label( data-ng-model='candlestick' )
+	h4 {{ candlestick[0].name }}
+.chart
+	.candlestick.muted
+		.wick( class="upper" )
+			.high
+				p
+			.low
+				p
+			.line
+		.body
+		.wick( class="lower" )
+			.high
+				p
+			.low
+				p
+			.line
+div( id="symbol-form" class="active")
+	label( for="o-bs-sum-bug-ErrorPrefix" ) $
+	input( class="symbol-input" label="$" type='text', ng-keypress='addNewKeyPress( newItem, $event )', ng-model='newItem' )
+//- div( class="add-to-watchlist" )
+//- 	button( class="add-to-watchlist-btn" ) Add to watchlish
+//- 	input.list-item-input( type='text', ng-keypress='addNewKeyPress( newItem, $event )', placeholder='Add Level' )
