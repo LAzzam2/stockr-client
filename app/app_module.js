@@ -10,6 +10,7 @@
 		'homepage',
 		'register',
 		'login',
+		'tcg',
 		'appRoot',
 		'ngAnimate',
 		'storageFactory',
