@@ -36,7 +36,7 @@
 			.then( function(  )
 			{
 				$scope.loading = false;
-				$state.go( 'app-root.list' );
+				$state.go( 'app-root.watchlist' );
 			} );
 		};
 
