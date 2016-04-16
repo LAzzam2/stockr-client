@@ -9,7 +9,7 @@
 		// Setup Config (!)
 
 		BACKEND_URL: 'http://localhost:9000'
-		// BACKEND_URL: 'http://ec2-54-186-189-69.us-west-2.compute.amazonaws.com:80'
+		// BACKEND_URL: 'http://ec2-52-37-46-206.us-west-2.compute.amazonaws.com:80'
 
 	} );
 
