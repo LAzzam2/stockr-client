@@ -4,7 +4,7 @@
 {
 	var tcg = angular.module( 'tcg' );
 
-	tcg.controller( 'TcgController', function( $rootScope, $scope, $state, sessionFactory )
+	tcg.controller( 'TcgController', function( $rootScope, $scope, $state, sessionFactory, watchlistFactory )
 	{
 		// This is a controller.
 

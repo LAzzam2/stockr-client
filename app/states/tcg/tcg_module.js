@@ -5,7 +5,8 @@
 	var tcg = angular.module( 'tcg',
 	[
 		'ui.router',
-		'sessionFactory'
+		'sessionFactory',
+		'aCommunity'
 	] );
 
 	tcg.config( function( $stateProvider )

@@ -39,6 +39,35 @@
 			return promise;
 		};
 
+		watchlistFactoryApi.getCommunityWatchlist = function(  )
+		{
+			var deferred = $q.defer(  );
+			var promise = deferred.promise;
+
+			$http( {
+
+				method: 'get',
+				withCredentials: true,
+				url: appConstants.BACKEND_URL + '/api/tcg/watchlist'
+
+			} )
+			.success( function( data )
+			{
+				console.log( 'Get watchlist success: ', data );
+
+				watchlistFactoryApi.watchlist = data.watchlistItems;
+
+				deferred.resolve( data.watchlistItems );
+			} )
+			.error( function( error )
+			{
+				console.log( 'Get watchlist error: ', error );
+				deferred.reject( error );
+			} );
+
+			return promise;
+		};
+
 		watchlistFactoryApi.upsertWatchlistItem = function( item )
 		{	
 			var deferred = $q.defer(  );
