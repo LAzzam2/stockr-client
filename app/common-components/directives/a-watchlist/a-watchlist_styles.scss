@@ -1,273 +1,128 @@
-.watchlist
+// A Watchlist Stlyes
+.tcg-view
 {
-	flex-flow: column;
-	align-items: center;
-	flex-grow: 1;
-
-	overflow: hidden;
-	min-height: 60px;
-	margin-top: 10px;
-
-	transition: all 0.2s ease-out;
-}
-
-.add-new-watchlist-item
-{
-	height: 60px;
-}
-
-.add-new-watchlist-item,
-.watchlist > li
-{
-	border: 1px solid #edede8;
-	border-radius: 6px;
-	background-color: #fcfcfa;
-}
-
-.watchlist > li
-{
-	margin-bottom: 5px;
-	box-shadow: 0px 0px 3px rgba( 0, 0, 0, 0.05 );
-
-	list-style-type: disc;
-
-	span
+	.watchlist-wrapper
 	{
-		flex-flow: row;
+		margin-top: 40px;
+	}
+}
+.watchlist-wrapper
+{
+	margin-top: 90vh;
+	.delete-watchlist-item
+	{
+		@extend %icon-x-solid;
 
-		display: flex;
+		align-items: center;
+		justify-content: center;
 
-		color: #7b7b7b;
+		position: absolute;
+		top: 0;
+		right: 0;
 
-		input
+		color: #e4e4e4;
+		font-size: 15px;
+
+		transition: color 0.2s ease-out;
+
+		&:hover
 		{
-			color: #7b7b7b;
+			color: $red;
 		}
 	}
 }
 
-
-.watchlist-item,
-.add-new-watchlist-item
+.watchlist
 {
-	flex-direction: row;
-	align-items: center;
-	justify-content: space-between;
-
-	overflow: hidden;
-	cursor: pointer;
-	width: calc(100% - 20px);
-	padding: 10px 0 7px 20px;
-	// background-color: #fcfcfa;
-
-	&.ng-enter
+	margin: auto;
+	> li
 	{
-		opacity: 0;
-
-		transition: all 0.35s ease-out;
+		width: 250px;
+		margin-bottom: 15px;
+		padding: 15px 20px 15px 15px;
+		border-radius: 10px;
+		background-color: white;
+		box-shadow: 0px 5px 10px rgba( 0, 0, 0, 0.15 );
 	}
-
-	&.ng-leave
+	> li.pos
 	{
-		opacity: 1;
-		height: auto;
-
-		transition: all 0.35s ease-out;
+		border-left: 10px solid $green;
+		.ticker
+		{
+			li
+			{
+				color: $green;
+			}
+		}
 	}
-
-	&.ng-enter.ng-enter-active
+	> li.neg
 	{
-		opacity: 1;
-		height: auto;
-
-		transition: all 0.35s ease-out;
-	}
-
-	&.ng-leave.ng-leave-active
-	{
-		opacity: 0;
-
-		transition: all 0.35s ease-out;
-	}
-	input
-	{
-		width: 100%;
-	}
-}
-.watchlist-item:last-of-type
-{
-	padding: 10px 0 7px 20px;
-}
-
-.watchlist-item-text
-{
-	flex-grow: 1;
-
-	height: 100%;
-	p
-	{
-		text-transform: uppercase;
-	}
-	p::before
-	{
-		content: '$';
+		border-left: 10px solid $red;
+		.ticker
+		{
+			li
+			{
+				color: $red;
+			}
+		}
 	}
 }
 
-.watchlist-item-text input
+.ticker
 {
-	width: calc( 100% - 40px );
-	height: 100%;
-	margin: 10px 0px 5px 0px;
-	outline: 0;
-	border: 0;
-	border-bottom: 1px solid rgba( 0, 0, 0, 0.3 );
-	background-color: transparent;
-
-	font-size: 14px;
-	font-family: 'Muli';
-	text-transform: uppercase;
-}
-::-webkit-input-placeholder
-{
-	text-transform: initial;
-}
-
-:-moz-placeholder
-{
-	text-transform: initial;
-}
-
-::-moz-placeholder
-{
-	text-transform: initial;
-}
-
-:-ms-input-placeholder
-{
-	text-transform: initial;
-}
-
-.delete-watchlist-item
-{
-	@extend %icon-x-solid;
-
+	flex-flow: row;
 	align-items: center;
 	justify-content: center;
 
-	position: absolute;
-	width: 30px;
-	height: 100%;
-	top: 0;
-	right: 0;
-	background-color: #959595;
+	display: flex;
+	margin-bottom: 15px;
+	padding-bottom: 5px;
+	border-bottom: 1px solid $light;
 
-	color: #e4e4e4;
-	font-size: 15px;
+	li
+	{
+		color: $dark;
+		font-weight: bold;
+		font-size: 24px;
+	}
+	li:last-of-type
+	{
+		margin-left: auto;
+		padding: 5px;
+		border: 1px solid $light;
 
-	transition: color 0.2s ease-out;
-
-	&:hover
+		font-weight: 100;
+		font-size: 12px;
+	}
+}
+.levels
+{
+	color: $grey;
+	li.pos
+	{
+		color: $green;
+	}
+	li.neg
 	{
 		color: $red;
 	}
 }
 
-.spinner-wrapper
-{
-	justify-content: center;
-
-	opacity: 1;
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	top: 0;
-	left: 0;
-	z-index: 1;
-	border-radius: 6px;
-	background-color: rgba( 255, 255, 255, 0 );
-
-	transition: all 0.3s ease-in;
-
-	&.ng-hide
-	{
-		opacity: 0;
-	}
-}
-
-.enter-icon
-{
-	align-items: center;
-	justify-content: center;
-
-	width: 80px;
-	height: 60px;
-	border-radius: 0 6px 6px 0;
-	background-color: $green;
-	box-shadow: -1px 0 7px 0 rgba( 0, 0, 0, 0.2 );
-
-	color: $background;
-	font-size: 12px;
-	text-transform: uppercase;
-
-	transition: all 0.2s ease-in;
-
-	&:hover
-	{
-		background-color: #78b066;
-		box-shadow: -2px 0 9px 0 rgba( 0, 0, 0, 0.24 );
-	}
-
-	&:active
-	{
-		background-color: $green;
-		box-shadow: -2px 0 9px 0 rgba( 0, 0, 0, 0.2 );
-
-		transition: all 0.1s ease;
-	}
-}
-
-.add-new-watchlist-item-field
-{
-	margin-bottom: 20px;
-}
-
 .add-to-watchlist
 {
-	align-items: center;
-
-	display: flex;
-	position: absolute;
-	width: 100%;
-	bottom: 0;
-	left: 0;
-
-	button,
-	input
-	{
-		width: 100%;
-	}
-
+	position: fixed;
+	bottom: 15px;
+	left: 15px;
 	button
 	{
-		align-items: center;
-
-		display: flex;
+		cursor: hand;
 		cursor: pointer;
-		padding: 10px 15px;
-		outline: none;
-		border: none;
-		background-color: #ccf0b2;
-		box-shadow: 0px -2px 15px rgba( 0, 0, 0, 0.10 );
+		padding: 5px 10px;
+		outline: 0;
+		border: 1px solid white;
+		border-radius: 5px;
+		background: transparent;
 
-		color: #758b65;
-		font-weight: bold;
-		line-height: 30px;
-		text-transform: lowercase;
+		color: white;
 	}
-}
-
-.empty-list-text
-{
-	text-align: center;
 }

@@ -9,8 +9,11 @@ body
 }
 .candlestick-wrapper
 {
-	width: 75%;
-	margin-left: 25%;
+	position: fixed;
+	width: 100%;
+	top: 50%;
+
+	transform: translate( 0, -50% );
 }
 
 .label

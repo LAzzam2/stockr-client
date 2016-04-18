@@ -74,7 +74,7 @@
 			{
 				return;
 			}
-			if( $scope.watchlist.length < 5 )
+			if( $scope.watchlist.length <= 5 )
 			{
 				if( duplicate == false ){
 					var newItem =

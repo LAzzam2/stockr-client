@@ -1,16 +1,7 @@
-//- .list.add-new-list-item-field
-//- 	.add-new-list-item
-//- 		.list-item-text
-//- 			input.list-item-input( type='text', ng-keypress='addNewKeyPress( newItem, $event )', ng-model='newItem', placeholder='$Ticker' )
-//- 		.enter-icon( ng-click='addNewWatchlistItem( newItem )' )
-//- 			| Enter
+
 ul.watchlist
-	//- .empty-watchlist( ng-show='watchlist.length === 0' )
-	//- 	.empty-list-text
-	//- 		| No tickers yet! Why don't you add some?
 	li.watchlist-item( ng-repeat='item in watchlist | reverse', ng-keypress='keyPress( item, $index, $event )' )
 		.watchlist-item-text
-			span
 				p( type='text', ng-model='item.ticker', placeholder='(x) Delete watchlist item', ng-blur='saveWatchlist( item, $index, $event )' ) 
 					| {{ item.ticker }}
 
@@ -19,6 +10,4 @@ ul.watchlist
 				li.watchlist-item-level
 					p.watchlist-item-level-input( type='text', ng-click="deleteLevel( item, val )", ng-model='val.level' )
 						| {{ val }}
-div( class="add-to-watchlist" )
-	button( class="add-to-watchlist-btn" ng-click="addCurrentTicker()") + add to watchlist
 	//- input.list-item-level-input( type='text', placeholder='Add Level' )

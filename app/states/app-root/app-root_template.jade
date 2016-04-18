@@ -1,21 +1,13 @@
 .app-root
-	nav
-		.nav-logo( ui-sref='homepage' )
-			.nav-app-sprout-logo
-			.nav-logo-text
+	header
+		.logo
+			.logo-text( ui-sref='homepage' )
 				| Stockr
-			.nav-rule
-		.nav-items
-			.nav-item.account-nav-item( ui-sref='app-root.account', ng-class='{ selected: toState.name === "app-root.account" }' )
-				.nav-item-icon.account-icon
-				.nav-item-text
-					| Account
-			.nav-item.list-nav-item( ui-sref='app-root.watchlist', ng-class='{ selected: toState.name === "app-root.watchlist" }' )
-				.nav-item-icon.list-icon
-				.nav-item-text
-					| Watch List
-			.nav-item.logout-nav-item( ng-click='logout(  )' )
-				.nav-item-icon.logout-icon
-				.nav-item-text
-					| Logout
+		nav
+			.home-watchlist-button.small-outline-button( ui-sref='app-root.watchlist' )
+				| Personal
+			.home-watchlist-button.small-outline-button( ui-sref='tcg' )
+				| TCG
+			.home-logout-button.small-outline-button( ng-click='logout(  )' )
+				| Logout
 	.app-content( ui-view='app-content' )

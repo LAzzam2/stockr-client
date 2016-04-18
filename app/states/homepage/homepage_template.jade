@@ -1,12 +1,48 @@
-section.main
-	.app-sprout-logo
-	.logo-text
-		| Stockr
-	.main-description
-		| Stalk charts effectively.
-	.main-register-button.big-green-button( ui-sref='register' )
-		| Register
-	.main-login-button.small-outline-button( ui-sref='login' )
-		| Login
+section.home
+	header
+		.logo
+			.logo-text( ui-sref='homepage' )
+				| Stockr
+		nav
+			.home-watchlist-button.small-outline-button( ui-sref='tcg' )
+				| TCG
+			.home-register-button.big-green-button( ui-sref='register' )
+				| Register
+			.home-login-button.small-outline-button( ui-sref='login' )
+				| Login
+	.content
+		.home-description
+			| Supercharge your watchlist.
+		ul.watchlist
+			li.pos
+				ul.ticker
+					li $TCG
+					li $13.50
+				ul.levels
+					li $14.50
+					li $14.23
+					li $13.34
+					li $13.00
+			li.neg
+				ul.ticker
+					li $DAN
+					li $1337.50
+				ul.levels
+					li $1453.95
+					li $1400.00
+					li $1102.34
+					li $1099.99
+			li.neg
+				ul.ticker
+					li $JSON
+					li $420.69
+				ul.levels
+					li $14.50
+					li $14.23
+					li $13.34
+					li $13.00
+		.intro
+
+			
 
 footer
