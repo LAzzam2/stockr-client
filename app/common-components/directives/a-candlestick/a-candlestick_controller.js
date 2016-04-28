@@ -23,8 +23,7 @@
 		var candlestick = $scope.candlestick[0];
 
 		$scope.activeName = 'Insert';
-
-		console.log( 'low ', candlestick.low );
+		
 		window.onkeydown = function(event) {
 			// console.log('keystroke', $(".symbol-input").val(), $(".symbol-input").is(":focus") );
 			if( !$("input").is(":focus") ){

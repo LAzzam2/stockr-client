@@ -68,6 +68,9 @@
     "selenium-standalone-jar": "^2.45.0",
     "sinon": "^1.17.1",
     "sinon-chai": "^2.8.0",
-    "streamqueue": "^1.1.1"
+    "streamqueue": "^1.1.1",
+    "node-yahoo-finance": "^0.2.12"
+  },
+  "devDependencies": {
   }
 }

@@ -2,6 +2,7 @@
 
 ( function(  )
 {
+
 	var appSproutClient = angular.module( 'appSproutClient',
 	[
 		'reverseFilter',
@@ -12,22 +13,26 @@
 		'login',
 		'tcg',
 		'appRoot',
+		'nav',
 		'ngAnimate',
 		'storageFactory',
-		'userFactory'
+		'userFactory',
+		'sn.skrollr'
+
 	] );
 
-	appSproutClient.config( function( $urlRouterProvider, $locationProvider )
+	appSproutClient.config( function( $urlRouterProvider, $locationProvider, snSkrollrProvider )
 	{
 		$urlRouterProvider.otherwise( '/' );
 		$locationProvider.html5Mode( true );
-	} );
+  		snSkrollrProvider.config = { smoothScrolling: true, forcedHeight: false };
 
+	});
 
-
-
-	appSproutClient.run( function( $rootScope )
+	appSproutClient.run( function( $rootScope, snSkrollr )
 	{
+  		snSkrollr.init();
+  		console.log( snSkrollr );
 		$rootScope.$on( '$stateChangeSuccess', function( event, toState, toParams, fromState, fromParams )
 		{
 			$rootScope.fromState = fromState;
@@ -37,6 +42,6 @@
 			$rootScope.toParams = toParams;
 		} );
 
-	} );
+	});
 
 } )(  );

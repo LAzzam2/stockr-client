@@ -15,15 +15,6 @@
 		{
 			$scope.activeChildNav = $state.current.activeChildNav;
 		} );
-
-		$scope.logout = function(  )
-		{
-			sessionFactory.logout(  )
-			.then( function(  )
-			{
-				$state.go( 'homepage' );
-			} );
-		};
 	} );
 
 } )(  );

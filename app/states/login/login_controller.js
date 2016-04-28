@@ -4,7 +4,7 @@
 {
 	var login = angular.module( 'login' );
 
-	login.controller( 'LoginController', function( $rootScope, $scope, $state, sessionFactory )
+	login.controller( 'LoginController', function( $rootScope, $scope, $state, sessionFactory, storageFactory )
 	{
 		// This is a controller.
 
@@ -12,6 +12,7 @@
 
 		$scope.email = '';
 		$scope.password = '';
+		$scope.user = '';
 
 		$scope.loginUser = function(  )
 		{

@@ -1,17 +1,9 @@
 section.home
-	header
-		.logo
-			.logo-text( ui-sref='homepage' )
-				| Stockr
-		nav
-			.home-watchlist-button.small-outline-button( ui-sref='tcg' )
-				| TCG
-			.home-register-button.big-green-button( ui-sref='register' )
-				| Register
-			.home-login-button.small-outline-button( ui-sref='login' )
-				| Login
 	.content
-		.home-description
+		.home-description(
+		sn-skrollr
+		data-start="opacity: 1; filter: blur(0px);"
+		data-100-start="opacity: .1; filter: blur(10px);")
 			| Supercharge your watchlist.
 		ul.watchlist
 			li.pos

@@ -219,6 +219,7 @@
 			});
 			if(duplicate == false){
 				$scope.watchlist[realIndex].levels.push(level);
+				$scope.watchlist[realIndex].levels.sort(function(a, b){return b-a});
 				$scope.saveWatchlist( $scope.watchlist[realIndex], 0, event );
 			}
 		};
@@ -235,6 +236,7 @@
 		{
 			var arr = item.levels;
     		var itemtoRemove = val;
+    		console.log( 'remove: ', itemtoRemove, arr );
     		arr.splice($.inArray(itemtoRemove, arr),1);
 			$scope.saveWatchlist( item, index, event );
 		}

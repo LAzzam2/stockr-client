@@ -28,6 +28,12 @@
 
 				watchlistFactoryApi.watchlist = data.watchlistItems;
 
+				//sort levels highest to lowest
+				function sortLevels(element, index, array) {
+					element.levels.sort(function(a, b){return b-a});
+				}
+				data.watchlistItems.forEach(sortLevels);
+
 				deferred.resolve( data.watchlistItems );
 			} )
 			.error( function( error )
@@ -56,6 +62,12 @@
 				console.log( 'Get watchlist success: ', data );
 
 				watchlistFactoryApi.watchlist = data.watchlistItems;
+
+				//sort levels highest to lowest
+				function sortLevels(element, index, array) {
+					element.levels.sort(function(a, b){return b-a});
+				}
+				data.watchlistItems.forEach(sortLevels);
 
 				deferred.resolve( data.watchlistItems );
 			} )
