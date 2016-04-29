@@ -7,7 +7,9 @@
 	nav.controller( 'NavController', function( $rootScope, $scope, storageFactory, sessionFactory, $state, $timeout )
 	{
 
+		$scope.user = 'test';
 		// console.log( window.Velocity ); this is working!
+		console.log('user: ',$scope.user);
 
 		$scope.$on( '$stateChangeSuccess', function( event, toState, toParams, fromState, fromParams )
 		{

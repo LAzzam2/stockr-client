@@ -1,15 +1,15 @@
-header
+header( ng-model="user" )
 	.logo
 		.logo-text( ui-sref='homepage' )
 			| Stockr
-	.nav(ng-show="user")
+	.nav( ng-show="user.name" )
 		.home-watchlist-button.small-outline-button( ui-sref='tcg' )
 			| Explore
 		.home-watchlist-button.small-outline-button( ui-sref='app-root.watchlist' )
 			| Watchlist
 		.home-logout-button.small-outline-button( ng-click='logout(  )' )
 			| Logout
-	.nav(ng-hide="user")
+	.nav( ng-hide="user.name" )
 		.home-watchlist-button.small-outline-button( ui-sref='tcg' )
 			| Explore
 		.home-register-button.big-green-button( ui-sref='register' )
