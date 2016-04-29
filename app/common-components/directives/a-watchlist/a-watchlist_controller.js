@@ -80,7 +80,8 @@
 					var newItem =
 					{
 						ticker: itemValue,
-						levels: [ ]
+						levels: [ ],
+						price: '',
 					};
 
 					$scope.watchlist.push( newItem );
@@ -178,6 +179,7 @@
 				}
 
 				updateWatchlistCopy(  );
+				getWatchlist(  );
 				// saveWatchlistItemAnimation( index );
 			} );
 		};

@@ -21,7 +21,8 @@
 			sessionFactory.logout(  )
 			.then( function(  )
 			{
-				$state.go( 'homepage' );
+				$state.go( 'homepage', { reload: true });
+				$scope.user = storageFactory.local.getObject( 'user' );
 			} );
 		};
 

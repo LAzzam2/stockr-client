@@ -25,7 +25,7 @@
 	{
 		$urlRouterProvider.otherwise( '/' );
 		$locationProvider.html5Mode( true );
-  		snSkrollrProvider.config = { smoothScrolling: true, forcedHeight: false };
+  		snSkrollrProvider.config = { smoothScrolling: true, forceHeight: false };
 
 	});
 

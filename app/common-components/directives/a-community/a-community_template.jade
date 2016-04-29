@@ -1,11 +1,15 @@
-
+h1(
+sn-skrollr
+data-start="opacity: 1; filter: blur(0px);"
+data-100-start="opacity: .1; filter: blur(10px);")
+	| The Chart Guys Community Watchlist
 ul.watchlist
-	li.watchlist-item( ng-repeat='item in watchlist | reverse', ng-keypress='keyPress( item, $index, $event )', class="pos" )
+	li.watchlist-item( ng-repeat='item in watchlist | reverse', ng-keypress='keyPress( item, $index, $event )', ng-class="{pos: item.quote[0].change > 0, neg: item.quote[0].change < 0}" )
 		ul.ticker
 			li( type='text', ng-model='item.ticker', placeholder='(x) Delete watchlist item', ng-blur='saveWatchlist( item, $index, $event )' ) 
 				| {{ item.ticker }}
-			li TEST
+			li {{ item.quote[0].lastTradePriceOnly }}
 		ul.levels( ng-repeat='val in item.levels' )
-			li.watchlist-item-level
+			li.watchlist-item-level( ng-class="{pos: val > item.quote[0].lastTradePriceOnly, neg: val < item.quote[0].lastTradePriceOnly}" )
 				| {{ val }}
 	//- input.list-item-level-input( type='text', placeholder='Add Level' )

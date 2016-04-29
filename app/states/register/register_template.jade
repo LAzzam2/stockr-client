@@ -30,8 +30,9 @@
 			.button-loading( ng-show='loading' )
 				spinner
 			input.account-save-submit( type='submit' )
-	.label
-		| Already a member?
-	.register-login-button.small-outline-button( ui-sref='login' )
-		| Login
+	.auth-options
+		.auth-label
+			| Already a member?
+		.login-register-button.auth-swap-btn( ui-sref='login' )
+			| Login
 	

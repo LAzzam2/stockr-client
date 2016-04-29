@@ -21,8 +21,9 @@
 			.button-loading( ng-show='loading' )
 				spinner
 			input.account-save-submit( type='submit' )
-	.label
-		| Not yet a member?
-	.login-register-button.small-outline-button( ui-sref='register' )
-		| Register
+	.auth-options
+		.auth-label
+			| Not yet a member?
+		.login-register-button.auth-swap-btn( ui-sref='register' )
+			| Register
 	

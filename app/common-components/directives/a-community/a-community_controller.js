@@ -34,9 +34,10 @@
 					var index;
 					for (index = 0; index < watchlist.length; ++index) {
 						
-						if( $scope.watchlist.length == 0 ){
+						if( $scope.watchlist.length == 0 && watchlist[index].levels.length > 0 ){
 							$scope.watchlist.push(watchlist[index]);
-						}else{
+						}else if( watchlist[index].levels.length > 1 ){
+							console.log(watchlist[index].levels)
 							var duplicate;
 							Array.prototype.find = function(obj){
 							    // Loop through array
