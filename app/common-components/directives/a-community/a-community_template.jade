@@ -8,8 +8,8 @@ ul.watchlist
 		ul.ticker
 			li( type='text', ng-model='item.ticker', placeholder='(x) Delete watchlist item', ng-blur='saveWatchlist( item, $index, $event )' ) 
 				| {{ item.ticker }}
-			li {{ item.quote[0].lastTradePriceOnly }}
+			li ${{ item.quote[0].lastTradePriceOnly }}
 		ul.levels( ng-repeat='val in item.levels' )
 			li.watchlist-item-level( ng-class="{pos: val > item.quote[0].lastTradePriceOnly, neg: val < item.quote[0].lastTradePriceOnly}" )
-				| {{ val }}
+				| ${{ val }}
 	//- input.list-item-level-input( type='text', placeholder='Add Level' )
