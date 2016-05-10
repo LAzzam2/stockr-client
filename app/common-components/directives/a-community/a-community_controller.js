@@ -36,8 +36,8 @@
 						
 						if( $scope.watchlist.length == 0 && watchlist[index].levels.length > 0 ){
 							$scope.watchlist.push(watchlist[index]);
-						}else if( watchlist[index].levels.length > 1 ){
-							console.log(watchlist[index].levels)
+						}else if( watchlist[index].levels.length >= 1 ){
+							// console.log(watchlist[index].levels)
 							var duplicate;
 							Array.prototype.find = function(obj){
 							    // Loop through array
@@ -62,14 +62,48 @@
 							duplicate = watchlistItems.find({ ticker: watchlist[index].ticker });
 
 							if( !duplicate ){
+								watchlist[index].count = 1;
 								$scope.watchlist.push(watchlist[index]);
+							}else{
+								// select duplicate ticker
+								var ticker = $.grep($scope.watchlist, function(e) { return e.ticker == watchlist[index].ticker });
+
+
+								// increment ticker count +1
+								++ticker[0].count;
+
+								// remove duplicates function
+								Array.prototype.unique = function() {
+								    var a = this.concat();
+								    for(var i=0; i<a.length; ++i) {
+								        for(var j=i+1; j<a.length; ++j) {
+								            if(a[i] === a[j])
+								                a.splice(j--, 1);
+								        }
+								    }
+
+								    return a;
+								};
+								// create single array with new levels added and remove duplicates
+								var newLevels = ticker[0].levels.concat(watchlist[index].levels).unique(); ;
+
+								// Sort levels function
+								function sortLevels(element, index, array) {
+									array.sort(function(a, b){return b-a});
+								}
+								// call sort levels function on newLevels
+								newLevels.forEach(sortLevels);
+
+								// Set Levels array to new sorted list
+								ticker[0].levels = newLevels;
 							}
 						}
-
 					}
 					watchlistCopy = angular.copy( $scope.watchlist );
 					// console.log($scope.watchlist);
 				}
+
+				$scope.watchlist.sort(function(a, b) {return a[1] - b[1]});
 
 				$timeout( function(  )
 				{
