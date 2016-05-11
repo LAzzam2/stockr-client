@@ -35,11 +35,6 @@
 			    		$('#symbol-form').addClass('active');
 			    		$('.candlestick').addClass('muted');
 				    }
-				    else if(event.keyCode == 13) {
-				    	event.preventDefault();
-				    	var inputSymbol = $(".symbol-input").val();
-						$scope.pullTickerData( item );
-				    }
 			   	}
 		   	}else
 		   	{
@@ -66,74 +61,98 @@
 
 		$scope.pullTickerData = function( item, event )
 		{
-			var Markit = {};
-			/**
-			* Define the QuoteService.
-			* First argument is symbol (string) for the quote. Examples: AAPL, MSFT, JNJ, GOOG.
-			* Second argument is fCallback, a callback function executed onSuccess of API.
-			*/
-			Markit.QuoteService = function(sSymbol, fCallback) {
-			    this.symbol = sSymbol;
-			    this.fCallback = fCallback;
-			    this.DATA_SRC = "http://dev.markitondemand.com/Api/v2/Quote/jsonp";
-			    this.makeRequest();
-			};
-			/**
-			* Ajax success callback. fCallback is the 2nd argument in the QuoteService constructor.
-			*/
-			Markit.QuoteService.prototype.handleSuccess = function(jsonResult) {
-			    this.fCallback(jsonResult);
-			};
-			/**
-			* Ajax error callback
-			*/
-			Markit.QuoteService.prototype.handleError = function(jsonResult) {
-			    console.error(jsonResult);
-			};
-			/** 
-			* Starts a new ajax request to the Quote API
-			*/
-			Markit.QuoteService.prototype.makeRequest = function() {
-			    //Abort any open requests
-			    if (this.xhr) { this.xhr.abort(); }
-			    //Start a new request
-			    this.xhr = $.ajax({
-			        data: { symbol: this.symbol },
-			        url: this.DATA_SRC,
-			        dataType: "jsonp",
-			        success: this.handleSuccess,
-			        error: this.handleError,
-			        context: this
-			    });
-			};
+			function getData( item ) {
+				var url = "http://query.yahooapis.com/v1/public/yql";
+				var symbol = item;
+				var data = encodeURIComponent("select * from yahoo.finance.quotes where symbol in ('" + symbol + "')");
 
-			new Markit.QuoteService(item, function(jsonResult) {
-				setItems(jsonResult);
-				setCurrentTicker(item);
-			    //Catch errors
-			    if (!jsonResult || jsonResult.Message || jsonResult.Status == 'Failure|APP_SPECIFIC_ERROR' ){
-			        $scope.loading = false;
-			        errorMsg(jsonResult.message);
-			    }
-			    else{
-			    	//If all goes well, your quote will be here.
-				    // console.log(jsonResult);
-				    $scope.loading = false;
+				$.getJSON(url, 'q=' + data + "&format=json&diagnostics=true&env=http://datatables.org/alltables.env")
+					.done(function (data) {
+						var quote = data.query.results.quote;
+						console.log(quote);
+						$scope.loading = false;
+						if( quote.LastTradePriceOnly == null ){
+							errorMsg(data);
+				    	}else{
+							setItems(quote);
+					    	setCurrentTicker(quote.symbol);
+				    	}
+				    	
+					})
+					.fail(function (jqxhr, textStatus, error) {
+						$scope.loading = false;
+						var err = textStatus + ", " + error;
+						alert('Request failed: ' + err);
+				});
+			}
+			getData( item );
+			// var Markit = {};
+			// /**
+			// * Define the QuoteService.
+			// * First argument is symbol (string) for the quote. Examples: AAPL, MSFT, JNJ, GOOG.
+			// * Second argument is fCallback, a callback function executed onSuccess of API.
+			// */
+			// Markit.QuoteService = function(sSymbol, fCallback) {
+			//     this.symbol = sSymbol;
+			//     this.fCallback = fCallback;
+			//     this.DATA_SRC = "http://dev.markitondemand.com/Api/v2/Quote/jsonp";
+			//     this.makeRequest();
+			// };
+			// /**
+			// * Ajax success callback. fCallback is the 2nd argument in the QuoteService constructor.
+			// */
+			// Markit.QuoteService.prototype.handleSuccess = function(jsonResult) {
+			//     this.fCallback(jsonResult);
+			// };
+			// /**
+			// * Ajax error callback
+			// */
+			// Markit.QuoteService.prototype.handleError = function(jsonResult) {
+			//     console.error(jsonResult);
+			// };
+			// /** 
+			// * Starts a new ajax request to the Quote API
+			// */
+			// Markit.QuoteService.prototype.makeRequest = function() {
+			//     //Abort any open requests
+			//     if (this.xhr) { this.xhr.abort(); }
+			//     //Start a new request
+			//     this.xhr = $.ajax({
+			//         data: { symbol: this.symbol },
+			//         url: this.DATA_SRC,
+			//         dataType: "jsonp",
+			//         success: this.handleSuccess,
+			//         error: this.handleError,
+			//         context: this
+			//     });
+			// };
 
-				    //Now proceed to do something with the data.
-				    setItems(jsonResult);
-				    setCurrentTicker(item);
-				    /**
-				    * Need help? Visit the API documentation at:
-				    * http://dev.markitondemand.com
-				    */
-			    }
+			// new Markit.QuoteService(item, function(jsonResult) {
+			// 	setItems(jsonResult);
+			// 	setCurrentTicker(item);
+			//     //Catch errors
+			//     if (!jsonResult || jsonResult.Message || jsonResult.Status == 'Failure|APP_SPECIFIC_ERROR' ){
+			//         $scope.loading = false;
+			//         errorMsg(jsonResult.message);
+			//     }
+			//     else{
+			//     	//If all goes well, your quote will be here.
+			// 	    // console.log(jsonResult);
+			// 	    $scope.loading = false;
+
+			// 	    //Now proceed to do something with the data.
+			// 	    setItems(jsonResult);
+			// 	    setCurrentTicker(item);
+			// 	    /**
+			// 	    * Need help? Visit the API documentation at:
+			// 	    * http://dev.markitondemand.com
+			// 	    */
+			//     }
 
 			    
-			});
+			// });
 
 			function setCurrentTicker( ticker ){
-				console.log('current ticker: ', ticker);
 				// local storage keys should be in a config file somewhere-
 				storageFactory.local.set('currentTicker', ticker);
 			} 
@@ -158,15 +177,15 @@
 		        $('h1').text('$'+symbol);
 		    	$('#results').addClass('active');
 		    	var symbol = {
-					price: data.LastPrice,
-					high: data.High,
-					low: data.Low,
+					price: data.LastTradePriceOnly,
+					high: data.DaysHigh,
+					low: data.DaysLow,
 					open: data.Open,
 					change: data.Change,
 					upperWick: 0,
 					lowerWick: 0,
 					body: 0,
-					spread: data.High - data.Low,
+					spread: data.DaysHigh - data.DaysLow,
 					symbol: data.Symbol
 				};
 

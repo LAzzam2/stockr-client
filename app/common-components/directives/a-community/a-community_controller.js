@@ -34,11 +34,9 @@
 					var index;
 					for (index = 0; index < watchlist.length; ++index) {
 						
-						if( $scope.watchlist.length == 0 && watchlist[index].levels.length > 0 ){
-							$scope.watchlist.push(watchlist[index]);
-						}else if( watchlist[index].levels.length >= 1 ){
-							// console.log(watchlist[index].levels)
-							var duplicate;
+						if( watchlist[index].levels.length >= 1 ){
+
+							// check if ticker is already added to watchlist
 							Array.prototype.find = function(obj){
 							    // Loop through array
 							    for(var i = 0, len = this.length; i < len; i++){
@@ -57,11 +55,9 @@
 							        }
 							    }
 							};
-							var watchlistItems = $scope.watchlist;
-							
-							duplicate = watchlistItems.find({ ticker: watchlist[index].ticker });
 
-							if( !duplicate ){
+							if( !$scope.watchlist.find({ ticker: watchlist[index].ticker }) ){
+								// Set watchlist item count to 1
 								watchlist[index].count = 1;
 								$scope.watchlist.push(watchlist[index]);
 							}else{
@@ -102,8 +98,8 @@
 					watchlistCopy = angular.copy( $scope.watchlist );
 					// console.log($scope.watchlist);
 				}
-
-				$scope.watchlist.sort(function(a, b) {return a[1] - b[1]});
+				// sort watchlist based on count (amount of times the ticker has been saved by users: "Popularity" )
+				$scope.watchlist.sort(function(a, b) {return a.count - b.count});
 
 				$timeout( function(  )
 				{
